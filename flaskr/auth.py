@@ -15,11 +15,11 @@ def register():
         error = None
 
         if not username:
-            error = 'Username is required'
+            error = b'Username is required'
         elif not password:
-            error = f'Password is required'
+            error = b'Password is required'
         elif db.execute('SELECT id FROM user WHERE username = ?', (username,)).fetchone() is not None:
-            error = f'User {username} is already registered.'
+            error = b'User {username} is already registered.'
 
         if error is None:
             db.execute('INSERT INTO user (username, password) VALUES (?, ?)', (username, generate_password_hash(password)))
